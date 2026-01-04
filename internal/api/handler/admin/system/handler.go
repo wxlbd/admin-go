@@ -21,6 +21,7 @@ var ProviderSet = wire.NewSet(
 	NewSmsChannelHandler,
 	NewSmsTemplateHandler,
 	NewSmsLogHandler,
+	NewMailHandler,
 	NewHandlers,
 )
 
@@ -43,6 +44,7 @@ type Handlers struct {
 	SmsChannel    *SmsChannelHandler
 	SmsTemplate   *SmsTemplateHandler
 	SmsLog        *SmsLogHandler
+	Mail          *MailHandler
 }
 
 func NewHandlers(
@@ -64,6 +66,7 @@ func NewHandlers(
 	smsChannel *SmsChannelHandler,
 	smsTemplate *SmsTemplateHandler,
 	smsLog *SmsLogHandler,
+	mail *MailHandler,
 ) *Handlers {
 	return &Handlers{
 		Area:          area,
@@ -84,5 +87,6 @@ func NewHandlers(
 		SmsChannel:    smsChannel,
 		SmsTemplate:   smsTemplate,
 		SmsLog:        smsLog,
+		Mail:          mail,
 	}
 }

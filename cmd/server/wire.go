@@ -51,6 +51,7 @@ func InitApp() (*gin.Engine, error) {
 		system.NewPostService,
 		system.NewNoticeService,
 		system.NewNotifyService,
+		system.NewMailService,
 		system.NewConfigService,
 		system.NewLoginLogService,
 		system.NewOperateLogService,

@@ -294,6 +294,38 @@ func RegisterSystemRoutes(engine *gin.Engine,
 				smsLogProtectedGroup.GET("/get", casbinMiddleware.RequirePermission("system:sms-log:query"), handlers.SmsLog.GetSmsLogPage)
 			}
 
+			// Mail Protected Routes
+			mailAccountGroup := systemGroup.Group("/mail-account")
+			{
+				mailAccountGroup.POST("/create", casbinMiddleware.RequirePermission("system:mail-account:create"), handlers.Mail.CreateMailAccount)
+				mailAccountGroup.PUT("/update", casbinMiddleware.RequirePermission("system:mail-account:update"), handlers.Mail.UpdateMailAccount)
+				mailAccountGroup.DELETE("/delete", casbinMiddleware.RequirePermission("system:mail-account:delete"), handlers.Mail.DeleteMailAccount)
+				mailAccountGroup.DELETE("/delete-list", casbinMiddleware.RequirePermission("system:mail-account:delete"), handlers.Mail.DeleteMailAccountList)
+				mailAccountGroup.GET("/get", casbinMiddleware.RequirePermission("system:mail-account:query"), handlers.Mail.GetMailAccount)
+				mailAccountGroup.GET("/page", casbinMiddleware.RequirePermission("system:mail-account:query"), handlers.Mail.GetMailAccountPage)
+				mailAccountGroup.GET("/list-all-simple", handlers.Mail.GetSimpleMailAccountList)
+				mailAccountGroup.GET("/simple-list", handlers.Mail.GetSimpleMailAccountList)
+			}
+
+			mailTemplateGroup := systemGroup.Group("/mail-template")
+			{
+				mailTemplateGroup.POST("/create", casbinMiddleware.RequirePermission("system:mail-template:create"), handlers.Mail.CreateMailTemplate)
+				mailTemplateGroup.PUT("/update", casbinMiddleware.RequirePermission("system:mail-template:update"), handlers.Mail.UpdateMailTemplate)
+				mailTemplateGroup.DELETE("/delete", casbinMiddleware.RequirePermission("system:mail-template:delete"), handlers.Mail.DeleteMailTemplate)
+				mailTemplateGroup.DELETE("/delete-list", casbinMiddleware.RequirePermission("system:mail-template:delete"), handlers.Mail.DeleteMailTemplateList)
+				mailTemplateGroup.GET("/get", casbinMiddleware.RequirePermission("system:mail-template:query"), handlers.Mail.GetMailTemplate)
+				mailTemplateGroup.GET("/page", casbinMiddleware.RequirePermission("system:mail-template:query"), handlers.Mail.GetMailTemplatePage)
+				mailTemplateGroup.GET("/list-all-simple", handlers.Mail.GetSimpleMailTemplateList)
+				mailTemplateGroup.GET("/simple-list", handlers.Mail.GetSimpleMailTemplateList)
+				mailTemplateGroup.POST("/send-mail", casbinMiddleware.RequirePermission("system:mail-template:send-mail"), handlers.Mail.SendMail)
+			}
+
+			mailLogGroup := systemGroup.Group("/mail-log")
+			{
+				mailLogGroup.GET("/page", casbinMiddleware.RequirePermission("system:mail-log:query"), handlers.Mail.GetMailLogPage)
+				mailLogGroup.GET("/get", casbinMiddleware.RequirePermission("system:mail-log:query"), handlers.Mail.GetMailLog)
+			}
+
 			// Log Protected Routes
 			systemGroup.GET("/login-log/page", casbinMiddleware.RequirePermission("system:login-log:query"), handlers.LoginLog.GetLoginLogPage)
 			systemGroup.GET("/operate-log/page", casbinMiddleware.RequirePermission("system:operate-log:query"), handlers.OperateLog.GetOperateLogPage)

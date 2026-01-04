@@ -1,0 +1,32 @@
+app:
+  name: "yudao-backend-go"
+  env: "local"
+
+http:
+  port: ":48080"
+  mode: "debug"
+
+log:
+  level: "debug"
+  filename: "logs/app.log"
+  max_size: 100
+  max_age: 7
+  max_backups: 10
+
+mysql:
+  dsn: "root:password@tcp(127.0.0.1:3306)/your_db?charset=utf8mb4&parseTime=True&loc=Local"
+  max_idle: 10
+  max_open: 100
+  max_lifetime: 3600
+
+redis:
+  addr: "127.0.0.1:6379"
+  password: ""
+  db: 0
+
+trade:
+  express:
+    client: "kd100"
+    kd100:
+      customer: "test_customer" # 替换为真实 customer
+      key: "test_key"           # 替换为真实 key

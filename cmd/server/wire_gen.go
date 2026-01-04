@@ -92,7 +92,9 @@ func InitApp() (*gin.Engine, error) {
 	smsChannelHandler := system2.NewSmsChannelHandler(smsChannelService)
 	smsTemplateHandler := system2.NewSmsTemplateHandler(smsTemplateService, smsSendService)
 	smsLogHandler := system2.NewSmsLogHandler(smsLogService)
-	systemHandlers := system2.NewHandlers(areaHandler, authHandler, deptHandler, dictHandler, loginLogHandler, menuHandler, noticeHandler, notifyHandler, operateLogHandler, permissionHandler, postHandler, roleHandler, tenantHandler, tenantPackageHandler, userHandler, smsChannelHandler, smsTemplateHandler, smsLogHandler)
+	mailService := system.NewMailService(db)
+	mailHandler := system2.NewMailHandler(mailService)
+	systemHandlers := system2.NewHandlers(areaHandler, authHandler, deptHandler, dictHandler, loginLogHandler, menuHandler, noticeHandler, notifyHandler, operateLogHandler, permissionHandler, postHandler, roleHandler, tenantHandler, tenantPackageHandler, userHandler, smsChannelHandler, smsTemplateHandler, smsLogHandler, mailHandler)
 	adminHandlers := &admin.AdminHandlers{
 		Infra:  handlers,
 		System: systemHandlers,
