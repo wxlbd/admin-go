@@ -1,0 +1,25 @@
+# Ignore Go build artifacts
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.test
+
+# Ignore IDE-specific files
+.idea/
+.vscode/
+
+# Ignore log files
+logs/
+
+# Ignore temporary files
+tmp/
+
+# Ignore local configuration files
+config/*.local.yaml
+/.spec-workflow/
+/internal/repo/query/
+/server
+main
+cmd/server/server
